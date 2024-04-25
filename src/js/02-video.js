@@ -1,10 +1,20 @@
-const video = document.querySelector('#vimeo-player');
+import Player from '@vimeo/player';
 
-// console.log(localStorage.getItem('sync_active'));
-const greeting = '   Hello world!   ';
+const iframe = document.querySelector('iframe');
+const player = new Player(iframe);
+const LOCAL_KEY = 'videoplayer-current-time';
+const currentTime = localStorage.getItem(LOCAL_KEY);
 
-console.log(greeting);
-// Expected output: "   Hello world!   ";
+player.on('play', function () {
+  console.log('played the video!');
+});
 
-console.log(greeting.trim());
-// Expected output: "Hello world!";
+player.getVideoTitle().then(function (title) {
+  console.log('title:', title);
+});
+
+player.on('timeupdate', ev => localStorage.setItem(LOCAL_KEY, ev.seconds));
+
+if (currentTime !== null) {
+  player.setCurrentTime(currentTime);
+}
