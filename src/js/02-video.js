@@ -1,8 +1,10 @@
 const video = document.querySelector('#vimeo-player');
 
-// console.log(video);
-// function timeSet(current) {
-//   localStorage.getItem('time-video', current);
-// }
-// console.log(timeSet());
-console.log(localStorage.getItem('sync_active'));
+// console.log(localStorage.getItem('sync_active'));
+const greeting = '   Hello world!   ';
+
+console.log(greeting);
+// Expected output: "   Hello world!   ";
+
+console.log(greeting.trim());
+// Expected output: "Hello world!";
