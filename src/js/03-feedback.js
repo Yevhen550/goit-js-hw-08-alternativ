@@ -11,6 +11,8 @@ let storageObj = {};
 form.addEventListener('input', throttle(inputValue, 500));
 form.addEventListener('submit', onFormSubmit);
 
+currentLocal();
+
 function inputValue(ev) {
   const nameTarget = ev.target.name;
   const valueTarget = ev.target.value;
@@ -29,4 +31,13 @@ function onFormSubmit(ev) {
   console.log(storageObj);
   localStorage.removeItem(LOCAL_KEY);
   form.reset();
+}
+
+function currentLocal() {
+  const localItem = JSON.parse(localStorage.getItem(LOCAL_KEY));
+  // console.log(localItem);
+  if (storageObj.email && storageObj.message !== null) {
+    localItem.email = textEmail.value;
+    localItem.message = textMessage.value;
+  }
 }
